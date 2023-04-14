@@ -4,17 +4,20 @@ export interface GetTasksResponse {
   error: string
 }
 
-export interface Task {
+export interface Task extends UpdateTaskModel {
   id: string
-  title: string
-  description: string
   todoListId: string
   order: number
+  addedDate: string
+}
+
+export interface UpdateTaskModel {
+  title: string
+  description: string
   status: number
   priority: number
   startDate: string
   deadline: string
-  addedDate: string
   completed: boolean
 }
 

@@ -35,7 +35,7 @@ export class TodosService {
       })
   }
 
-  deleteTodo(todoId: string) {
+  removeTodo(todoId: string) {
     this.http
       .delete<CommonResponse>(`${environment.baseUrl}/todo-lists/${todoId}`)
       .pipe(
