@@ -17,3 +17,7 @@ export interface Task {
   addedDate: string
   completed: boolean
 }
+
+export interface DomainTask {
+  [key: string]: Task[]
+}
