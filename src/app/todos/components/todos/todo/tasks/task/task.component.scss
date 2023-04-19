@@ -8,3 +8,12 @@
 .task-content {
     display: flex;
 }
+
+.completed {
+    opacity: 0.6;
+    // text-decoration: line-through;
+}
+
+.input {
+    width: 100%;
+}

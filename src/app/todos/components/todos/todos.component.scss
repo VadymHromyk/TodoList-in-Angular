@@ -1,4 +1,18 @@
+.todos-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.input {
+    width: 300px;
+    padding: 10px;
+}
+
 .todos {
     display: flex;
-    flex-direction: row;
+    gap: 30px;
+    flex-wrap: wrap;
 }
