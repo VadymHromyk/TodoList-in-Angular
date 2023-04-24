@@ -1,5 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core'
-import { Todo } from 'src/app/todos/models/todos.models'
+import { DomainTodo, FilterType } from 'src/app/todos/models/todos.models'
+import { TodosService } from 'src/app/todos/services/todos.service'
 
 @Component({
   selector: 'tl-todo',
@@ -7,12 +8,14 @@ import { Todo } from 'src/app/todos/models/todos.models'
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent {
-  @Input() todo!: Todo
+  @Input() todo!: DomainTodo
   @Output() removeTodoEvent = new EventEmitter<string>()
   @Output() editTodoEvent = new EventEmitter<{ todoId: string; title: string }>()
 
   isEditMode = false
   newTitle = ''
+
+  constructor(private todosService: TodosService) {}
 
   removeTodoHandler() {
     this.removeTodoEvent.emit(this.todo.id)
@@ -26,5 +29,9 @@ export class TodoComponent {
   editTitleHandler() {
     this.isEditMode = false
     this.editTodoEvent.emit({ todoId: this.todo.id, title: this.newTitle })
+  }
+
+  changeFilter(filter: FilterType) {
+    this.todosService.changeFilter({ filter, todoId: this.todo.id })
   }
 }

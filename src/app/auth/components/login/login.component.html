@@ -1,1 +1,40 @@
-<p>login works!</p>
+<div class="box">
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="form">
+    <h2>Login page</h2>
+
+    <label>
+      Enter email
+      <input
+        type="text"
+        formControlName="email"
+        required
+        [ngClass]="{
+          inputError: email!.invalid && (email!.dirty || email!.touched),
+          inputSuccess: email!.valid
+        }"
+      />
+    </label>
+
+    <label *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="error">
+      <div *ngIf="email!.errors?.['required']">email required</div>
+      <div *ngIf="email!.errors?.['pattern']">email incorrect</div>
+    </label>
+
+    <label>
+      Enter password
+      <input
+        type="password"
+        formControlName="password"
+        required
+        [ngClass]="{
+          inputError: password!.invalid && (password!.dirty || password!.touched),
+          inputSuccess: password!.valid
+        }"
+      />
+    </label>
+
+    <label><input type="checkbox" formControlName="checkbox" /> remember me</label>
+
+    <button [disabled]="loginForm.invalid" type="submit">sing in</button>
+  </form>
+</div>

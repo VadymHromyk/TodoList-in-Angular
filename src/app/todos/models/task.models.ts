@@ -4,6 +4,10 @@ export interface GetTasksResponse {
   error: string
 }
 
+export interface DomainTask {
+  [key: string]: Task[]
+}
+
 export interface Task extends UpdateTaskModel {
   id: string
   todoListId: string
@@ -19,8 +23,4 @@ export interface UpdateTaskModel {
   startDate: string
   deadline: string
   completed: boolean
-}
-
-export interface DomainTask {
-  [key: string]: Task[]
 }

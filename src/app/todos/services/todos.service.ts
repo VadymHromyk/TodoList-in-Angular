@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
 import { BehaviorSubject } from 'rxjs'
-import { Todo } from '../models/todos.models'
+import { DomainTodo, FilterType, Todo } from '../models/todos.models'
 import { CommonResponse } from 'src/app/core/models/core.codels'
 import { map } from 'rxjs/operators'
 
@@ -10,14 +10,22 @@ import { map } from 'rxjs/operators'
   providedIn: 'root',
 })
 export class TodosService {
-  todos$ = new BehaviorSubject<Todo[]>([])
+  todos$ = new BehaviorSubject<DomainTodo[]>([])
 
   constructor(private http: HttpClient) {}
 
   getTodos() {
-    this.http.get<Todo[]>(`${environment.baseUrl}/todo-lists`).subscribe(todos => {
-      this.todos$.next(todos)
-    })
+    this.http
+      .get<Todo[]>(`${environment.baseUrl}/todo-lists`)
+      .pipe(
+        map((todos: Todo[]) => {
+          const newTodos: DomainTodo[] = todos.map(tl => ({ ...tl, filter: 'all' }))
+          return newTodos
+        })
+      )
+      .subscribe((todos: DomainTodo[]) => {
+        this.todos$.next(todos)
+      })
   }
 
   addTodo(title: string) {
@@ -25,12 +33,12 @@ export class TodosService {
       .post<CommonResponse<{ item: Todo }>>(`${environment.baseUrl}/todo-lists`, { title })
       .pipe(
         map(res => {
-          const stateTodos = this.todos$.getValue()
-          const newTodo = res.data.item
+          const stateTodos: DomainTodo[] = this.todos$.getValue()
+          const newTodo: DomainTodo = { ...res.data.item, filter: 'all' }
           return [newTodo, ...stateTodos]
         })
       )
-      .subscribe(todos => {
+      .subscribe((todos: DomainTodo[]) => {
         this.todos$.next(todos)
       })
   }
@@ -69,5 +77,17 @@ export class TodosService {
       .subscribe(todos => {
         this.todos$.next(todos)
       })
+  }
+
+  changeFilter(data: { todoId: string; filter: FilterType }) {
+    const stateTodos = this.todos$.getValue()
+    const newTodos = stateTodos.map(tl => {
+      if (tl.id === data.todoId) {
+        return { ...tl, filter: data.filter }
+      } else {
+        return tl
+      }
+    })
+    this.todos$.next(newTodos)
   }
 }
