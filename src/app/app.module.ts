@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 
-import { AppComponent } from './app.component'
-import { AppRoutingModule } from './app-routing.module'
-import { CoreModule } from './core/core.module'
-import { AuthModule } from './auth/auth.module'
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
-import { TodosModule } from './todos/todos.module'
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { CoreModule } from './core/core.module'
+import { SharedModule } from './shared/shared.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,10 +14,9 @@ import { TodosModule } from './todos/todos.module'
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    AuthModule,
-    TodosModule,
     HttpClientModule,
     FormsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
