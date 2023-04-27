@@ -5,18 +5,12 @@ import { CommonResponse } from '../models/core.codels'
 import { ResultCodeEnum } from '../enums/resultCode.enum'
 import { Router } from '@angular/router'
 import { LoginRequestData, MeResponse } from '../models/auth.models'
-import { EMPTY, catchError } from 'rxjs'
+import { EMPTY, catchError, map } from 'rxjs'
 import { NotificationService } from './notification.service'
 
 @Injectable()
 export class AuthService {
   isAuth = false
-
-  resolveAuthRequest: Function = () => {}
-
-  authRequest = new Promise(resolve => {
-    this.resolveAuthRequest = resolve
-  })
 
   constructor(
     private http: HttpClient,
@@ -44,20 +38,27 @@ export class AuthService {
       .subscribe(res => {
         if (res.resultCode === ResultCodeEnum.success) {
           this.router.navigate(['/login'])
+        } else {
+          this.notificationService.handleError(res.messages[0])
         }
       })
   }
 
   me() {
-    this.http
+    return this.http
       .get<CommonResponse<MeResponse>>(`${environment.baseUrl}/auth/me`)
       .pipe(catchError(this.errorHandler.bind(this)))
-      .subscribe(res => {
-        if (res.resultCode === ResultCodeEnum.success) {
-          this.isAuth = true
-        }
-        this.resolveAuthRequest()
-      })
+      .pipe(
+        map(res => {
+          const isSuccess = res.resultCode === ResultCodeEnum.success
+          if (isSuccess) {
+            this.isAuth = true
+          } else {
+            this.notificationService.handleError(res.messages[0])
+          }
+          return isSuccess
+        })
+      )
   }
 
   private errorHandler(err: HttpErrorResponse) {
