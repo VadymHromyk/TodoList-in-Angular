@@ -18,4 +18,20 @@
     [filter]="todo.filter"
   ></tl-todo-filters>
   <tl-todo-footer [addedDate]="todo.addedDate"></tl-todo-footer>
+  <p>
+    <button
+      type="button"
+      class="btn btn-outline-primary ms-2"
+      (click)="isCollapsed = !isCollapsed"
+      [attr.aria-expanded]="!isCollapsed"
+      aria-controls="collapseExample"
+    >
+      Toggle with Two Way Binding
+    </button>
+  </p>
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="card">
+      <div class="card-body">You can collapse this card by clicking one Toggle button</div>
+    </div>
+  </div>
 </div>
