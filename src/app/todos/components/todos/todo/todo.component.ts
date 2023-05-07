@@ -14,7 +14,6 @@ export class TodoComponent {
 
   isEditMode = false
   newTitle = ''
-  isCollapsed = true
 
   constructor(private todosService: TodosService) {}
 

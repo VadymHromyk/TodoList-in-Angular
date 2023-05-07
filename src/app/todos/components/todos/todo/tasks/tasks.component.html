@@ -6,8 +6,13 @@
   (keyup.enter)="addTaskHandler()"
 />
 <tl-task
-  *ngFor="let task of tasks$ | async"
+  *ngFor="let task of tasks$ | async | slice : 0 : numberOfTasks"
   [task]="task"
   (removeTaskEvent)="removeTask($event)"
   (changeTaskEvent)="changeTask($event)"
-></tl-task>
+>
+</tl-task>
+
+<button type="button" *ngIf="(tasks$ | async)!.length > 5" (click)="isShowTasksHandle()">
+  {{ buttonName }}
+</button>

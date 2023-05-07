@@ -1,4 +1,4 @@
-<div class="box">
+<div>
   <div class="todo-header">
     <input
       *ngIf="isEditMode; else content"
@@ -7,31 +7,22 @@
       (blur)="editTitleHandler()"
     />
     <ng-template #content>
-      <b (dblclick)="activateEditModeHandler()">{{ todo.title }}</b>
+      <h5 (dblclick)="activateEditModeHandler()">{{ todo.title }}</h5>
     </ng-template>
 
     <button (click)="removeTodoHandler()">X</button>
   </div>
-  <tl-tasks [todoId]="todo.id"></tl-tasks>
-  <tl-todo-filters
-    (changeFilterEvent)="changeFilter($event)"
-    [filter]="todo.filter"
-  ></tl-todo-filters>
-  <tl-todo-footer [addedDate]="todo.addedDate"></tl-todo-footer>
-  <p>
-    <button
-      type="button"
-      class="btn btn-outline-primary ms-2"
-      (click)="isCollapsed = !isCollapsed"
-      [attr.aria-expanded]="!isCollapsed"
-      aria-controls="collapseExample"
-    >
-      Toggle with Two Way Binding
-    </button>
-  </p>
-  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-    <div class="card">
-      <div class="card-body">You can collapse this card by clicking one Toggle button</div>
-    </div>
+
+  <div>
+    <tl-tasks [todoId]="todo.id"></tl-tasks>
+
+    <tl-todo-filters
+      (changeFilterEvent)="changeFilter($event)"
+      [filter]="todo.filter"
+    ></tl-todo-filters>
+  </div>
+
+  <div>
+    <tl-todo-footer [addedDate]="todo.addedDate"></tl-todo-footer>
   </div>
 </div>

@@ -9,7 +9,10 @@ import { TasksComponent } from './components/todos/todo/tasks/tasks.component'
 import { TaskComponent } from './components/todos/todo/tasks/task/task.component'
 import { TodoFiltersComponent } from './components/todos/todo/todo-filters/todo-filters.component'
 import { TodoFooterComponent } from './components/todos/todo/todo-footer/todo-footer.component'
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap'
+import { MatIconModule } from '@angular/material/icon'
+import { MatButtonModule } from '@angular/material/button'
+import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatInputModule } from '@angular/material/input'
 
 @NgModule({
   declarations: [
@@ -20,6 +23,14 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap'
     TodoFiltersComponent,
     TodoFooterComponent,
   ],
-  imports: [CommonModule, TodosRoutingModule, FormsModule, NgbCollapseModule],
+  imports: [
+    CommonModule,
+    TodosRoutingModule,
+    FormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule,
+  ],
 })
 export class TodosModule {}

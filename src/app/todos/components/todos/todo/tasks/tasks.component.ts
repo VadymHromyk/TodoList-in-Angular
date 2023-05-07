@@ -14,8 +14,10 @@ export class TasksComponent implements OnInit {
   @Input() todoId!: string
 
   tasks$?: Observable<Task[]>
-
   taskTitle = ''
+  isShowAllTasks = false
+  numberOfTasks = 5
+  buttonName = '...more'
 
   constructor(private tasksService: TasksService, private todosService: TodosService) {}
 
@@ -30,7 +32,7 @@ export class TasksComponent implements OnInit {
         let activeTasks = tasks[this.todoId]
 
         if (activeTodo?.filter === 'completed') {
-          activeTasks = activeTasks.filter(t => t.status === TaskStatusEnum.complited)
+          activeTasks = activeTasks.filter(t => t.status === TaskStatusEnum.completed)
         }
         if (activeTodo?.filter === 'active') {
           activeTasks = activeTasks.filter(t => t.status === TaskStatusEnum.active)
@@ -53,5 +55,16 @@ export class TasksComponent implements OnInit {
 
   changeTask(data: { todoId: string; taskId: string; model: UpdateTaskModel }) {
     this.tasksService.updateTask(data)
+  }
+
+  isShowTasksHandle() {
+    this.isShowAllTasks = !this.isShowAllTasks
+    if (this.isShowAllTasks) {
+      this.numberOfTasks = 10
+      this.buttonName = 'less'
+    } else {
+      this.numberOfTasks = 5
+      this.buttonName = '...more'
+    }
   }
 }

@@ -30,10 +30,9 @@ export class TaskComponent {
     this.newTitle = this.task.title
   }
 
-  changeTaskStatusHandler(event: MouseEvent) {
-    const newStatus = (event.currentTarget as HTMLInputElement).checked
+  changeTaskStatusHandler(completed: boolean) {
     this.changeTask({
-      status: newStatus ? this.taskStatusEnum.complited : this.taskStatusEnum.active,
+      status: completed ? this.taskStatusEnum.completed : this.taskStatusEnum.active,
     })
   }
 
