@@ -8,11 +8,12 @@ import { FormsModule } from '@angular/forms'
 import { TasksComponent } from './components/todos/todo/tasks/tasks.component'
 import { TaskComponent } from './components/todos/todo/tasks/task/task.component'
 import { TodoFiltersComponent } from './components/todos/todo/todo-filters/todo-filters.component'
-import { TodoFooterComponent } from './components/todos/todo/todo-footer/todo-footer.component'
 import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatInputModule } from '@angular/material/input'
+import { MatCardModule } from '@angular/material/card'
+import { MatToolbarModule } from '@angular/material/toolbar'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,6 @@ import { MatInputModule } from '@angular/material/input'
     TasksComponent,
     TaskComponent,
     TodoFiltersComponent,
-    TodoFooterComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +31,8 @@ import { MatInputModule } from '@angular/material/input'
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
+    MatCardModule,
+    MatToolbarModule,
   ],
 })
 export class TodosModule {}

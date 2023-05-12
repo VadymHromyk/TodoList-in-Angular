@@ -1,11 +1,26 @@
-<div class="todos-header">
-  <h1>Angular Todo</h1>
-  <button (click)="logoutHandler()">logout</button>
+<mat-toolbar>
+  <button mat-icon-button aria-label="menu button">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span>My Todolist</span>
+  <span class="todo-header-spacer"></span>
+
+  <button mat-icon-button aria-label="exit button" (click)="logoutHandler()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="todo-input">
+  <mat-form-field>
+    <mat-label>Add todo list</mat-label>
+    <input matInput placeholder="Ex. Shopping list" [(ngModel)]="todoTitle" />
+  </mat-form-field>
+  <button mat-icon-button aria-label="add todo" (click)="addTodoHandler()">
+    <mat-icon>add_circle_outline</mat-icon>
+  </button>
 </div>
-<div class="todos-input">
-  <input class="input" type="text" placeholder="Add todo list" [(ngModel)]="todoTitle" />
-  <button (click)="addTodoHandler()">+</button>
-</div>
+
 <div class="todos">
   <tl-todo
     *ngFor="let todo of todos$ | async"

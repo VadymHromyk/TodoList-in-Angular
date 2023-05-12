@@ -61,7 +61,7 @@ export class TasksComponent implements OnInit {
     this.isShowAllTasks = !this.isShowAllTasks
     if (this.isShowAllTasks) {
       this.numberOfTasks = 10
-      this.buttonName = 'less'
+      this.buttonName = '...less'
     } else {
       this.numberOfTasks = 5
       this.buttonName = '...more'

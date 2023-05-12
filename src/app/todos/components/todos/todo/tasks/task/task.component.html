@@ -5,10 +5,11 @@
     [ngClass]="{ completed: task.status === taskStatusEnum.completed }"
   >
     <mat-checkbox
+      color="primary"
       [checked]="task.status === taskStatusEnum.completed"
       (change)="changeTaskStatusHandler($event.checked)"
     >
-      {{ task.title }}
+      <p>{{ task.title }}</p>
     </mat-checkbox>
 
     <div>

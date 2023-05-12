@@ -2,36 +2,27 @@
   <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="form">
     <h2>Login page</h2>
 
-    <label>
-      Enter email
-      <input
-        type="text"
-        formControlName="email"
-        required
-        [ngClass]="{
-          inputError: email!.invalid && (email!.dirty || email!.touched),
-          inputSuccess: email!.valid
-        }"
-      />
-    </label>
+    <mat-form-field>
+      <mat-label>Enter email</mat-label>
+      <input matInput type="email" formControlName="email" required />
+      <mat-error *ngIf="email!.hasError('pattern') && !email!.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="email!.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-    <label *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="error">
-      <div *ngIf="email!.errors?.['required']">email required</div>
-      <div *ngIf="email!.errors?.['pattern']">email incorrect</div>
-    </label>
-
-    <label>
-      Enter password
-      <input
-        type="password"
-        formControlName="password"
-        required
-        [ngClass]="{
-          inputError: password!.invalid && (password!.dirty || password!.touched),
-          inputSuccess: password!.valid
-        }"
-      />
-    </label>
+    <mat-form-field>
+      <mat-label>Enter password</mat-label>
+      <input matInput type="password" formControlName="password" required />
+      <mat-error *ngIf="password!.hasError('minlength') && !password!.hasError('required')">
+        Short password
+      </mat-error>
+      <mat-error *ngIf="password!.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
     <label><input type="checkbox" formControlName="checkbox" /> remember me</label>
 

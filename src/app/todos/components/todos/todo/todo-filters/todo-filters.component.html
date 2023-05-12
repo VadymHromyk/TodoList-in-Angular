@@ -1,14 +1,26 @@
 <div class="box">
-  <button [ngClass]="{ completed: filter === 'active' }" (click)="changeFilterHandler('active')">
+  <button
+    color="primary"
+    mat-stroked-button
+    [ngClass]="{ completedColor: filter === 'active' }"
+    (click)="changeFilterHandler('active')"
+  >
     Active
   </button>
   <button
-    [ngClass]="{ completed: filter === 'completed' }"
+    color="primary"
+    mat-stroked-button
+    [ngClass]="{ completedColor: filter === 'completed' }"
     (click)="changeFilterHandler('completed')"
   >
     Completed
   </button>
-  <button [ngClass]="{ completed: filter === 'all' }" (click)="changeFilterHandler('all')">
+  <button
+    color="primary"
+    mat-stroked-button
+    [ngClass]="{ completedColor: filter === 'all' }"
+    (click)="changeFilterHandler('all')"
+  >
     All
   </button>
 </div>

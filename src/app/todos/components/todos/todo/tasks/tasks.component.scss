@@ -1,5 +1,14 @@
+.box {
+    display: flex;
+    flex-direction: column;
+}
+
 .input {
     margin: 10px 0;
     width: 100%;
     box-sizing: border-box;
+}
+
+.tasks-btn {
+    align-self: flex-end;
 }

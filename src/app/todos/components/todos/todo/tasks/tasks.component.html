@@ -1,18 +1,26 @@
-<input
-  class="input"
-  type="text"
-  placeholder="Add new task"
-  [(ngModel)]="taskTitle"
-  (keyup.enter)="addTaskHandler()"
-/>
-<tl-task
-  *ngFor="let task of tasks$ | async | slice : 0 : numberOfTasks"
-  [task]="task"
-  (removeTaskEvent)="removeTask($event)"
-  (changeTaskEvent)="changeTask($event)"
->
-</tl-task>
+<div class="box">
+  <input
+    class="input"
+    type="text"
+    placeholder="Add new task"
+    [(ngModel)]="taskTitle"
+    (keyup.enter)="addTaskHandler()"
+  />
+  <tl-task
+    *ngFor="let task of tasks$ | async | slice : 0 : numberOfTasks"
+    [task]="task"
+    (removeTaskEvent)="removeTask($event)"
+    (changeTaskEvent)="changeTask($event)"
+  >
+  </tl-task>
 
-<button type="button" *ngIf="(tasks$ | async)!.length > 5" (click)="isShowTasksHandle()">
-  {{ buttonName }}
-</button>
+  <button
+    class="tasks-btn"
+    type="button"
+    mat-button
+    *ngIf="(tasks$ | async)!.length > 5"
+    (click)="isShowTasksHandle()"
+  >
+    {{ buttonName }}
+  </button>
+</div>
