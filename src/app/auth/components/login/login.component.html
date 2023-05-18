@@ -1,7 +1,7 @@
 <div class="box">
-  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="form">
-    <h2>Login page</h2>
+  <h2>Login page</h2>
 
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="form">
     <mat-form-field>
       <mat-label>Enter email</mat-label>
       <input matInput type="email" formControlName="email" required />
@@ -24,8 +24,13 @@
       </mat-error>
     </mat-form-field>
 
-    <label><input type="checkbox" formControlName="checkbox" /> remember me</label>
+    <mat-checkbox formControlName="checkbox">Remember me</mat-checkbox>
 
-    <button [disabled]="loginForm.invalid" type="submit">sing in</button>
+    <button mat-stroked-button [disabled]="loginForm.invalid" type="submit">Log in</button>
   </form>
+
+  <p title="Will be open in a new tab">
+    To create account visit
+    <a href="https://social-network.samuraijs.com/signUp" target="_blank">samuraijs.com</a>
+  </p>
 </div>
