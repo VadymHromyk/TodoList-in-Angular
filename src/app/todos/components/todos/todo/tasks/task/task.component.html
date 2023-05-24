@@ -9,8 +9,8 @@
       [checked]="task.status === taskStatusEnum.completed"
       (change)="changeTaskStatusHandler($event.checked)"
     >
-      <p>{{ task.title }}</p>
     </mat-checkbox>
+    <p (click)="toggleClass($event, 'show')">{{ task.title }}</p>
 
     <div>
       <button mat-icon-button aria-label="edit task" (click)="activateEditModeHandler()">

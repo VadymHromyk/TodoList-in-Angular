@@ -49,4 +49,14 @@ export class TaskComponent {
     }
     this.changeTaskEvent.emit({ todoId: this.task.todoListId, taskId: this.task.id, model })
   }
+
+  toggleClass(event: any, className: string) {
+    const hasClass = event.target.classList.contains(className)
+
+    if (hasClass) {
+      event.srcElement.classList.remove('show')
+    } else {
+      event.srcElement.classList.add('show')
+    }
+  }
 }

@@ -8,3 +8,17 @@
 .completed {
     opacity: 0.6;
 }
+
+.box p {
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.box p.show {
+    width: 300px;
+    white-space: break-spaces;
+    overflow: unset;
+}
