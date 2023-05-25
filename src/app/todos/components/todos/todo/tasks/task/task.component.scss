@@ -1,4 +1,4 @@
-.box {
+.mainContent {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,16 +9,17 @@
     opacity: 0.6;
 }
 
-.box p {
-    width: 300px;
+.mainContent p {
+    width: 210px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     margin: 0;
+    cursor: pointer;
 }
 
-.box p.show {
-    width: 300px;
+.mainContent p.show {
     white-space: break-spaces;
     overflow: unset;
+    margin-bottom: 2%;
 }

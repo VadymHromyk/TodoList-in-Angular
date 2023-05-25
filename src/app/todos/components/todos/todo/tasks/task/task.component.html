@@ -1,6 +1,6 @@
 <div>
   <div
-    class="box"
+    class="mainContent"
     *ngIf="!isEditMode; else content"
     [ngClass]="{ completed: task.status === taskStatusEnum.completed }"
   >
@@ -10,6 +10,7 @@
       (change)="changeTaskStatusHandler($event.checked)"
     >
     </mat-checkbox>
+
     <p (click)="toggleClass($event, 'show')">{{ task.title }}</p>
 
     <div>

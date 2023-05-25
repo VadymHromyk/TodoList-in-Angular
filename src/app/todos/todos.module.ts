@@ -14,6 +14,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatInputModule } from '@angular/material/input'
 import { MatCardModule } from '@angular/material/card'
 import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatMenuModule } from '@angular/material/menu'
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
     MatInputModule,
     MatCardModule,
     MatToolbarModule,
+    MatMenuModule,
   ],
 })
 export class TodosModule {}

@@ -9,6 +9,14 @@
     flex-direction: column;
 }
 
+.todo-footer-btns {
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+    width: 80%;
+    padding: 14px 8px; 
+}
+
 .todo-date {
     align-self: flex-end;
     padding-right: 3%;

@@ -20,12 +20,11 @@
   </mat-card-content>
 
   <mat-card-footer class="todo-footer">
-    <mat-card-actions>
-      <tl-todo-filters
-        (changeFilterEvent)="changeFilter($event)"
-        [filter]="todo.filter"
-      ></tl-todo-filters
-    ></mat-card-actions>
+    <tl-todo-filters
+      class="todo-footer-btns"
+      (changeFilterEvent)="changeFilter($event)"
+      [filter]="todo.filter"
+    ></tl-todo-filters>
 
     <p class="todo-date">{{ todo.addedDate | date : 'longDate' }}</p>
   </mat-card-footer>

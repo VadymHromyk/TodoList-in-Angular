@@ -22,7 +22,7 @@ export class LoginComponent {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(3)],
     }),
-    rememberMe: new FormControl<boolean>(false, { nonNullable: true }),
+    checkbox: new FormControl<boolean>(false, { nonNullable: true }),
   })
 
   get email() {
