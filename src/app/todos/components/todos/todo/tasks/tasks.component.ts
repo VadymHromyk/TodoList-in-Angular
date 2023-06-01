@@ -14,6 +14,7 @@ export class TasksComponent implements OnInit {
   @Input() todoId!: string
 
   tasks$?: Observable<Task[]>
+  errorMessage$$?: Observable<string | undefined>
   taskTitle = ''
   isShowAllTasks = false
   numberOfTasks = 5
@@ -41,12 +42,26 @@ export class TasksComponent implements OnInit {
       })
     )
 
+    this.errorMessage$$ = this.tasksService.errorMessage$.pipe(
+      map(res => {
+        if (res?.todoId === this.todoId) {
+          return res.message
+        } else {
+          return undefined
+        }
+      })
+    )
+
     this.tasksService.getTasks(this.todoId)
   }
 
   addTaskHandler() {
     this.tasksService.addTask({ todoId: this.todoId, title: this.taskTitle })
     this.taskTitle = ''
+  }
+
+  closeErrMessageHandler() {
+    this.tasksService.errorMessage$.next({ todoId: this.todoId, message: '' })
   }
 
   removeTask(data: { todoId: string; taskId: string }) {

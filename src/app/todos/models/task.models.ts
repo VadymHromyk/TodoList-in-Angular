@@ -24,3 +24,8 @@ export interface UpdateTaskModel {
   deadline: string
   completed: boolean
 }
+
+export interface TaskErrorMessage {
+  todoId: string
+  message: string
+}

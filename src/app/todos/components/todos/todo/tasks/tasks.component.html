@@ -1,11 +1,17 @@
 <div class="box">
-  <input
-    class="input"
-    type="text"
-    placeholder="Add new task"
-    [(ngModel)]="taskTitle"
-    (keyup.enter)="addTaskHandler()"
-  />
+  <mat-form-field>
+    <mat-label>Add new task</mat-label>
+    <input
+      matInput
+      #message
+      maxlength="102"
+      [(ngModel)]="taskTitle"
+      (keyup.enter)="addTaskHandler()"
+    />
+    <mat-hint align="end">{{ message.value.length }} / 102</mat-hint>
+  </mat-form-field>
+  <p class="errMessage" (click)="closeErrMessageHandler()">{{ errorMessage$$ | async }}</p>
+
   <tl-task
     *ngFor="let task of tasks$ | async | slice : 0 : numberOfTasks"
     [task]="task"

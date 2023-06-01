@@ -1,15 +1,23 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, map } from 'rxjs'
-import { environment } from 'src/environments/environment'
-import { DomainTask, GetTasksResponse, Task, UpdateTaskModel } from '../models/task.models'
+import { ResultCodeEnum } from 'src/app/core/enums/resultCode.enum'
 import { CommonResponse } from 'src/app/core/models/core.codels'
+import { environment } from 'src/environments/environment'
+import {
+  DomainTask,
+  GetTasksResponse,
+  Task,
+  TaskErrorMessage,
+  UpdateTaskModel,
+} from '../models/task.models'
 
 @Injectable({
   providedIn: 'root',
 })
 export class TasksService {
   tasks$ = new BehaviorSubject<DomainTask>({})
+  errorMessage$ = new BehaviorSubject<TaskErrorMessage | null>(null)
 
   constructor(private http: HttpClient) {}
 
@@ -32,17 +40,17 @@ export class TasksService {
           title: data.title,
         }
       )
-      .pipe(
-        map(res => {
+      .subscribe(res => {
+        const isSuccess = res.resultCode === ResultCodeEnum.success
+        if (isSuccess) {
           const stateTasks = this.tasks$.getValue()
           const newTask = res.data.item
           const newTasks = [newTask, ...stateTasks[data.todoId]]
           stateTasks[data.todoId] = newTasks
-          return stateTasks
-        })
-      )
-      .subscribe((tasks: DomainTask) => {
-        this.tasks$.next(tasks)
+          this.tasks$.next(stateTasks)
+        } else {
+          this.errorMessage$.next({ todoId: data.todoId, message: res.messages[0] })
+        }
       })
   }
 
