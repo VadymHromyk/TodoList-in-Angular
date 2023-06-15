@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input'
 import { MatCardModule } from '@angular/material/card'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatMenuModule } from '@angular/material/menu'
+import { SharedModule } from '../shared/shared.module'
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MatMenuModule } from '@angular/material/menu'
     MatCardModule,
     MatToolbarModule,
     MatMenuModule,
+    SharedModule,
   ],
 })
 export class TodosModule {}

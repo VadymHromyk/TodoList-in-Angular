@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
   },
+  {
+    path: 'info',
+    loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule),
+  },
 ]
 
 @NgModule({

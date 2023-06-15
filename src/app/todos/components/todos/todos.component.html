@@ -1,21 +1,4 @@
-<mat-toolbar>
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu button">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item><mat-icon>info</mat-icon> <span>About app</span></button>
-    <button mat-menu-item aria-label="exit button" (click)="logoutHandler()">
-      <mat-icon>exit_to_app</mat-icon> <span>Sign out</span>
-    </button>
-  </mat-menu>
-
-  <span>My Todolist</span>
-  <span class="todo-header-spacer"></span>
-
-  <button mat-icon-button aria-label="exit button" (click)="logoutHandler()">
-    <mat-icon>exit_to_app</mat-icon>
-  </button>
-</mat-toolbar>
+<tl-header></tl-header>
 
 <div class="todo-input">
   <mat-form-field>
